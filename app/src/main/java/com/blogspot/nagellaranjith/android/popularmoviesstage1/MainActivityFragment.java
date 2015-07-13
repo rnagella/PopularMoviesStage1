@@ -1,5 +1,6 @@
 package com.blogspot.nagellaranjith.android.popularmoviesstage1;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -35,6 +36,7 @@ public class MainActivityFragment extends Fragment {
     private ArrayAdapter<String> adapter;
     GridView gridView;
     String[] imageIDs ={};
+    String[] movieData;
 //    String[] imageIDs =  {"http://image.tmdb.org/t/p/w185//kqjL17yufvn9OVLyXYpvtyrFfak.jpg",
 //            "http://image.tmdb.org/t/p/w185//kqjL17yufvn9OVLyXYpvtyrFfak.jpg"};
 
@@ -66,24 +68,21 @@ public class MainActivityFragment extends Fragment {
         JSONArray jsonArray = jsonObject.getJSONArray(tmdb_results);
 
 
-        String[] result = new String[jsonArray.length()];
+        movieData = new String[jsonArray.length()];
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject movie = jsonArray.getJSONObject(i);
 
             String url = movie.getString(tmdb_poster_path);
+            String original_title = "Juraci world";
 
-            if(url!=null) {
-                result[i] = tmdb_base_url + url;
-            } else {
-                Log.e("noImageUrl", "" + R.drawable.noimage);
-            }
+//            if(url!=null) {
+//                movieData.put("original_title", "original_title");
 
-
-
-
+          movieData[i] = tmdb_base_url + url;
+//            }
         }
 
-        return result;
+        return movieData;
     }
 
     @Override
@@ -113,11 +112,15 @@ public class MainActivityFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                if (mAppToast != null) {
-                    mAppToast.cancel();
-                }
-                mAppToast.makeText(getActivity(), "" + position,
-                        Toast.LENGTH_SHORT).show();
+//                if (mAppToast != null) {
+//                    mAppToast.cancel();
+//                }
+//                mAppToast.makeText(getActivity(), "" + position,
+//                        Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra(Intent.EXTRA_TEXT, "hello_world");
+                startActivity(intent);
+
             }
         });
 

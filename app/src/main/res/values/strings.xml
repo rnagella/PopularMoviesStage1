@@ -10,5 +10,6 @@
     <string name="pref_sort_order_values_higest_rated">vote_average.desc</string>
     <string name="pref_sort_order_options_popularity">Popularity</string>
     <string name="pref_sort_order_options_higest_rated">Highest Rated</string>
+    <string name="title_activity_detail">DetailActivity</string>
 </resources>
 
