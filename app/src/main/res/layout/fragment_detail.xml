@@ -11,14 +11,14 @@
 
     tools:context="com.blogspot.nagellaranjith.android.popularmoviesstage1.DetailActivityFragment">
 
-    <TextView android:layout_width="fill_parent"
+    <TextView android:id="@+id/original_title_text_view"
+        android:layout_width="fill_parent"
         android:layout_height="100dp"
-        android:text="Origina Title"
         android:background="@color/material_blue_grey_800"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:text="Origina Title"
         android:textColor="#FFF"
-        android:id="@+id/original_title_text_view"
         />
 
     <LinearLayout
@@ -29,23 +29,23 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
         <ImageView
+            android:id="@+id/poster__image_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/noimage"
-            android:id="@+id/poster__image_view"/>
+            android:src="@drawable/noimage"/>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_vertical|center_horizontal">
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical">
             <TextView
+                android:id="@+id/release_date_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2015"
-                android:textColor="#000"
-                android:id="@+id/release_date_text_view"/>
+                android:textColor="#000"/>
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->
@@ -53,11 +53,11 @@
                 <!--android:textColor="#000"-->
                 <!--android:id="@+id/duriation_text_view"/>-->
             <TextView
+                android:id="@+id/rating_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="8.1/10"
                 android:textColor="#000"
-                android:id="@+id/rating_text_view"
                 />
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
@@ -70,14 +70,14 @@
         </LinearLayout>
     </LinearLayout>
     <TextView
+        android:id="@+id/overview_text_view"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:id="@+id/overview_text_view"
-        android:text="Characterful and Joymonger delivers two of Adam's most acclaimed shows, recorded live with AUSLAN interpreter Leanne Beer at Melbourne's Athenaeum Theatre"/>
+        android:text=""/>
 
 </LinearLayout>
 </ScrollView>

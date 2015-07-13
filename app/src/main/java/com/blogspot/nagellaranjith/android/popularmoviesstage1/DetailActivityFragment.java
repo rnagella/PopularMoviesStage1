@@ -1,12 +1,18 @@
 package com.blogspot.nagellaranjith.android.popularmoviesstage1;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -22,11 +28,26 @@ public class DetailActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
         Intent intent = getActivity().getIntent();
-        Log.e("fragmentIntent", intent.toString());
 
         if (intent!=null&& intent.hasExtra(Intent.EXTRA_TEXT)){
             String msg = intent.getStringExtra(Intent.EXTRA_TEXT);
-            Log.e("msg", msg);
+            JSONObject jsonObject;
+            try {
+                jsonObject = new JSONObject(msg);
+
+               ImageView imageView = (ImageView) rootView.findViewById(R.id.poster__image_view);
+                Picasso.with(getActivity().getApplicationContext()).load(jsonObject.getString("poster_path"))
+                        .placeholder(R.drawable.noimage)
+//                .error(R.drawable.errorimage)
+                        .into(imageView);
+
+                ((TextView) rootView.findViewById(R.id.overview_text_view)).setText(jsonObject.getString("overview").toString());
+                ((TextView) rootView.findViewById(R.id.original_title_text_view)).setText(jsonObject.getString("original_title").toString());
+                ((TextView) rootView.findViewById(R.id.release_date_text_view)).setText(jsonObject.getString("release_date").toString());
+                ((TextView) rootView.findViewById(R.id.rating_text_view)).setText(jsonObject.getString("vote_average").toString() + "/10");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         return rootView;

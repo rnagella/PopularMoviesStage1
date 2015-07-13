@@ -30,15 +30,18 @@ import java.net.URL;
 /**
  * A placeholder fragment containing a simple view.
  */
+
+
 public class MainActivityFragment extends Fragment {
     private Toast mAppToast;
     final String Log_TAG = "PM_STAGE1";
     private ArrayAdapter<String> adapter;
     GridView gridView;
-    String[] imageIDs ={};
+    String[] imageIDs = {};
     String[] movieData;
-//    String[] imageIDs =  {"http://image.tmdb.org/t/p/w185//kqjL17yufvn9OVLyXYpvtyrFfak.jpg",
-//            "http://image.tmdb.org/t/p/w185//kqjL17yufvn9OVLyXYpvtyrFfak.jpg"};
+    JSONObject movieJSONdata;
+    JSONArray jsonArray1;
+
 
     public MainActivityFragment() {
     }
@@ -47,10 +50,7 @@ public class MainActivityFragment extends Fragment {
         FetchMovieTask fetchMoviePosters = new FetchMovieTask();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String sort_order = sharedPreferences.getString(getString(R.string.pref_sort_order), "popularity.desc");
-//        Log.e("pref_sort_order_label", sharedPreferences.getString("pref_sort_order_values", "popularity.desc"));
 
-                Log.e("sort_order_by", sort_order);
-        //vote_average.desc
         fetchMoviePosters.execute(sort_order);
     }
 
@@ -61,7 +61,7 @@ public class MainActivityFragment extends Fragment {
         final String tmdb_overview = "overview";
         final String tmdb_release_date = "release_date";
         final String tmdb_popularity = "popularity";
-        final String tmdb_vote_average = "popularity";
+        final String tmdb_vote_average = "vote_average";
         final String tmdb_poster_path = "poster_path";
 
         JSONObject jsonObject = new JSONObject(data);
@@ -69,19 +69,28 @@ public class MainActivityFragment extends Fragment {
 
 
         movieData = new String[jsonArray.length()];
+
+
+        jsonArray1 = new JSONArray();
+
+
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject movie = jsonArray.getJSONObject(i);
 
             String url = movie.getString(tmdb_poster_path);
             String original_title = "Juraci world";
 
-//            if(url!=null) {
-//                movieData.put("original_title", "original_title");
+            movieData[i] = tmdb_base_url + url;
 
-          movieData[i] = tmdb_base_url + url;
-//            }
+            jsonArray1.put(new JSONObject()
+                    .put("original_title", movie.getString(tmdb_original_title))
+                    .put("overview", movie.getString(tmdb_overview))
+                    .put("release_date", movie.getString(tmdb_release_date))
+                    .put("popularity", movie.getString(tmdb_popularity))
+                    .put("vote_average", movie.getString(tmdb_vote_average))
+                    .put("poster_path", tmdb_base_url + movie.getString(tmdb_poster_path)));
+
         }
-
         return movieData;
     }
 
@@ -98,9 +107,6 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         gridView = (GridView) rootView.findViewById(R.id.grid_view);
-        Log.e("gridView", gridView.toString());
-
-//        adapter = new ArrayAdapter<String>(getActivity(), R.layout.fragment_main, R.layout.poster_image_thumbnail, new ArrayList<>());
 
 
         ImageAdapter adapter1 = new ImageAdapter(getActivity(), imageIDs);
@@ -112,14 +118,19 @@ public class MainActivityFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-//                if (mAppToast != null) {
-//                    mAppToast.cancel();
-//                }
-//                mAppToast.makeText(getActivity(), "" + position,
-//                        Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), DetailActivity.class);
-                intent.putExtra(Intent.EXTRA_TEXT, "hello_world");
-                startActivity(intent);
+
+                try {
+
+
+
+                    Intent intent = new Intent(getActivity(), DetailActivity.class);
+                    intent.putExtra(Intent.EXTRA_TEXT, jsonArray1.getJSONObject(position).toString());
+                    startActivity(intent);
+
+                } catch (Exception e) {
+
+                }
+
 
             }
         });
@@ -138,8 +149,6 @@ public class MainActivityFragment extends Fragment {
 
             try {
 
-//                URL url = new URL("http://api.themoviedb.org/3/discover/movie?" +
-//                        "sort_by=popularity.desc&api_key=5ad1483b40fbedcac64c9ffcca680796");
 
                 Uri.Builder builder = new Uri.Builder();
                 builder.scheme("http");
@@ -148,9 +157,9 @@ public class MainActivityFragment extends Fragment {
                 builder.appendPath("discover");
                 builder.appendPath("movie");
                 builder.appendQueryParameter("sort_by", params[0]);
-                builder.appendQueryParameter("api_key","5ad1483b40fbedcac64c9ffcca680796");
+                builder.appendQueryParameter("api_key", "5ad1483b40fbedcac64c9ffcca680796");
 
-                Log.e("urlBuilder", builder.build().toString());
+
 
                 URL url = new URL(builder.build().toString());
 

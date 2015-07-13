@@ -13,8 +13,8 @@ import com.squareup.picasso.Picasso;
  */
 public class ImageAdapter extends BaseAdapter
 {
-    private Context context;
     String[] imageIDs;
+    private Context context;
 
     public ImageAdapter(Context c, String[] i)
     {
