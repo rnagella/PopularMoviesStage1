@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">PM\'s Stage1</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="pref_sort_order">Popularity</string>
+    <string name="pref_sort_order_label">Sort By</string>
+    <string name="pref_sort_order_default">Most Popular</string>
+    <string name="pref_sort_order_values_popularity">popularity.desc</string>
+    <string name="pref_sort_order_values_higest_rated">vote_average.desc</string>
+    <string name="pref_sort_order_options_popularity">Popularity</string>
+    <string name="pref_sort_order_options_higest_rated">Highest Rated</string>
+</resources>
+
