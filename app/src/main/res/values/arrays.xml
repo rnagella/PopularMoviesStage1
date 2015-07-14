@@ -2,10 +2,10 @@
 <resources>
     <string-array name="pref_sort_order_values">
         <item>@string/pref_sort_order_values_popularity</item>
-        <item>@string/pref_sort_order_values_higest_rated</item>
+        <item>@string/pref_sort_order_values_highest_rated</item>
     </string-array>
     <string-array name="pref_sort_order_options">
         <item>@string/pref_sort_order_options_popularity</item>
-        <item>@string/pref_sort_order_options_higest_rated</item>
+        <item>@string/pref_sort_order_options_highest_rated</item>
     </string-array>
 </resources>

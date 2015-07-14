@@ -12,9 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,14 +31,15 @@ import java.net.URL;
 
 
 public class MainActivityFragment extends Fragment {
-    private Toast mAppToast;
-    final String Log_TAG = "PM_STAGE1";
-    private ArrayAdapter<String> adapter;
-    GridView gridView;
-    String[] imageIDs = {};
-    String[] movieData;
-    JSONObject movieJSONdata;
-    JSONArray jsonArray1;
+
+    final private String Log_TAG = "PM_STAGE1";
+
+    private GridView gridView;
+    final private String[] imageIDs = {};
+
+    private final String API_KEY = "5ad1483b40fbedcac64c9ffcca680796";
+
+    private JSONArray jsonArray1;
 
 
     public MainActivityFragment() {
@@ -68,7 +67,7 @@ public class MainActivityFragment extends Fragment {
         JSONArray jsonArray = jsonObject.getJSONArray(tmdb_results);
 
 
-        movieData = new String[jsonArray.length()];
+        String[] movieData = new String[jsonArray.length()];
 
 
         jsonArray1 = new JSONArray();
@@ -78,7 +77,7 @@ public class MainActivityFragment extends Fragment {
             JSONObject movie = jsonArray.getJSONObject(i);
 
             String url = movie.getString(tmdb_poster_path);
-            String original_title = "Juraci world";
+
 
             movieData[i] = tmdb_base_url + url;
 
@@ -109,7 +108,7 @@ public class MainActivityFragment extends Fragment {
         gridView = (GridView) rootView.findViewById(R.id.grid_view);
 
 
-        ImageAdapter adapter1 = new ImageAdapter(getActivity(), imageIDs);
+//        ImageAdapter adapter1 = new ImageAdapter(getActivity(), imageIDs);
 
 
         gridView.setAdapter(new ImageAdapter(getActivity(), imageIDs));
@@ -128,6 +127,7 @@ public class MainActivityFragment extends Fragment {
                     startActivity(intent);
 
                 } catch (Exception e) {
+                    Log.e("Log_TAG", "Error", e);
 
                 }
 
@@ -157,7 +157,7 @@ public class MainActivityFragment extends Fragment {
                 builder.appendPath("discover");
                 builder.appendPath("movie");
                 builder.appendQueryParameter("sort_by", params[0]);
-                builder.appendQueryParameter("api_key", "5ad1483b40fbedcac64c9ffcca680796");
+                builder.appendQueryParameter("api_key", API_KEY);
 
 
 
@@ -169,7 +169,7 @@ public class MainActivityFragment extends Fragment {
 
                 // Read the input stream
                 InputStream inputStream = urlConnection.getInputStream();
-                StringBuffer sb = new StringBuffer();
+                StringBuilder sb = new StringBuilder();
 
                 if (inputStream == null) {
                     // do nothing.

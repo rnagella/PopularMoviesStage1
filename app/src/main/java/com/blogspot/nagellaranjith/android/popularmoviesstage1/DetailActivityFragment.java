@@ -41,10 +41,10 @@ public class DetailActivityFragment extends Fragment {
 //                .error(R.drawable.errorimage)
                         .into(imageView);
 
-                ((TextView) rootView.findViewById(R.id.overview_text_view)).setText(jsonObject.getString("overview").toString());
-                ((TextView) rootView.findViewById(R.id.original_title_text_view)).setText(jsonObject.getString("original_title").toString());
-                ((TextView) rootView.findViewById(R.id.release_date_text_view)).setText(jsonObject.getString("release_date").toString());
-                ((TextView) rootView.findViewById(R.id.rating_text_view)).setText(jsonObject.getString("vote_average").toString() + "/10");
+                ((TextView) rootView.findViewById(R.id.overview_text_view)).setText(jsonObject.getString("overview"));
+                ((TextView) rootView.findViewById(R.id.original_title_text_view)).setText(jsonObject.getString("original_title"));
+                ((TextView) rootView.findViewById(R.id.release_date_text_view)).setText(jsonObject.getString("release_date"));
+                ((TextView) rootView.findViewById(R.id.rating_text_view)).setText(jsonObject.getString("vote_average") + "/10");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
