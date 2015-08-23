@@ -22,9 +22,14 @@ public class ImageAdapter extends BaseAdapter
         imageIDs = i;
     }
 
+
     //---returns the number of images---
     public int getCount() {
-        return imageIDs.length;
+        if (imageIDs != null) {
+            return imageIDs.length;
+        } else {
+            return 0;
+        }
     }
 
     //---returns the ID of an item---

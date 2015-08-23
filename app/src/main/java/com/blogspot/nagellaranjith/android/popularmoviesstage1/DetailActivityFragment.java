@@ -38,7 +38,7 @@ public class DetailActivityFragment extends Fragment {
 
                 ImageView imageView = (ImageView) rootView.findViewById(R.id.poster__image_view);
                 Picasso.with(getActivity().getApplicationContext()).load(jsonObject.getString("poster_path"))
-                        .placeholder(R.drawable.noimage)
+                        .placeholder(R.mipmap.noimage)
 //                .error(R.drawable.errorimage)
                         .into(imageView);
 

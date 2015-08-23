@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/network_error_title"
+        android:id="@+id/title"
+        android:textSize="@dimen/abc_text_size_large_material"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="@string/network_error_message"
+        android:textSize="@dimen/abc_text_size_large_material"
+        android:id="@+id/textView"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:padding="8dp">
+    </TextView>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/network_error_button_text"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/dialogButtonTryAgain"/>
+</RelativeLayout>

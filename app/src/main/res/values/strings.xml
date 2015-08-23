@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">PM\'s Stage1</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="pref_sort_order">Popularity</string>
@@ -15,5 +14,9 @@
     <string name="details_default_date">Release Date Unknown</string>
     <string name="details_default_rating">No rating available</string>
     <string name="default_image_description">No image available</string>
+    <string name="api_key">5ad1483b40fbedcac64c9ffcca680796</string>
+    <string name="network_error_title">Network Error</string>
+    <string name="network_error_message">Check your connection and try again.</string>
+    <string name="network_error_button_text">Try again</string>
 </resources>
 
