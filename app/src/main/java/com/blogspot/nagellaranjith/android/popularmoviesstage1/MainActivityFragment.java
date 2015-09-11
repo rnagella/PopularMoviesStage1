@@ -212,7 +212,7 @@ public class MainActivityFragment extends Fragment {
 
     private class FetchMovieTask extends AsyncTask<String, Void, String[]> {
         private String[] getMovieData(String data) throws JSONException {
-            final String tmdb_base_url = "http://image.tmdb.org/t/p/w185/";
+            final String tmdb_base_url = "http://image.tmdb.org/t/p/w342/";
             final String tmdb_results = "results";
             final String tmdb_original_title = "original_title";
             final String tmdb_overview = "overview";
